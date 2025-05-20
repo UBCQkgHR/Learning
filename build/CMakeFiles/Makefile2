@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dadei/C/product/Learning
+CMAKE_SOURCE_DIR = /home/dadei/C/Learning
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dadei/C/product/Learning/build
+CMAKE_BINARY_DIR = /home/dadei/C/Learning/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -96,14 +96,14 @@ Astar/clean: Astar/CMakeFiles/Astar.dir/clean
 Astar/CMakeFiles/Astar.dir/all:
 	$(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/depend
 	$(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dadei/C/product/Learning/build/CMakeFiles --progress-num=1,2 "Built target Astar"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dadei/C/Learning/build/CMakeFiles --progress-num=1,2 "Built target Astar"
 .PHONY : Astar/CMakeFiles/Astar.dir/all
 
 # Build rule for subdir invocation for target.
 Astar/CMakeFiles/Astar.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dadei/C/product/Learning/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dadei/C/Learning/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/CMakeFiles/Astar.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dadei/C/product/Learning/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dadei/C/Learning/build/CMakeFiles 0
 .PHONY : Astar/CMakeFiles/Astar.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ Astar/CMakeFiles/Astar.dir/clean:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P /home/dadei/C/product/Learning/build/CMakeFiles/VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P /home/dadei/C/Learning/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

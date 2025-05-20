@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/dadei/C/product/Learning/Astar/include
+CXX_INCLUDES = -I/home/dadei/C/Learning/Astar/include
 
 CXX_FLAGS = -std=gnu++17 -Wall -Wextra -Wpedantic
 

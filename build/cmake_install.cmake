@@ -1,4 +1,4 @@
-# Install script for directory: /home/dadei/C/product/Learning
+# Install script for directory: /home/dadei/C/Learning
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/dadei/C/product/Learning/build/Astar/cmake_install.cmake")
+  include("/home/dadei/C/Learning/build/Astar/cmake_install.cmake")
 
 endif()
 
@@ -56,5 +56,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dadei/C/product/Learning/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/dadei/C/Learning/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,4 +1,4 @@
-# Install script for directory: /home/dadei/C/product/Learning/Astar
+# Install script for directory: /home/dadei/C/Learning/Astar
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

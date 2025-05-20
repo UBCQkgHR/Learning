@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dadei/C/product/Learning
+CMAKE_SOURCE_DIR = /home/dadei/C/Learning
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dadei/C/product/Learning/build
+CMAKE_BINARY_DIR = /home/dadei/C/Learning/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/dadei/C/product/Learning/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dadei/C/product/Learning/build/CMakeFiles /home/dadei/C/product/Learning/build/Astar//CMakeFiles/progress.marks
-	cd /home/dadei/C/product/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dadei/C/product/Learning/build/CMakeFiles 0
+	cd /home/dadei/C/Learning/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dadei/C/Learning/build/CMakeFiles /home/dadei/C/Learning/build/Astar//CMakeFiles/progress.marks
+	cd /home/dadei/C/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dadei/C/Learning/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/dadei/C/product/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/clean
+	cd /home/dadei/C/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,23 +103,23 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/dadei/C/product/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/preinstall
+	cd /home/dadei/C/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/dadei/C/product/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/preinstall
+	cd /home/dadei/C/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/dadei/C/product/Learning/build && $(CMAKE_COMMAND) -P /home/dadei/C/product/Learning/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/dadei/C/product/Learning/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/dadei/C/Learning/build && $(CMAKE_COMMAND) -P /home/dadei/C/Learning/build/CMakeFiles/VerifyGlobs.cmake
+	cd /home/dadei/C/Learning/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 Astar/CMakeFiles/Astar.dir/rule:
-	cd /home/dadei/C/product/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/CMakeFiles/Astar.dir/rule
+	cd /home/dadei/C/Learning/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Astar/CMakeFiles/Astar.dir/rule
 .PHONY : Astar/CMakeFiles/Astar.dir/rule
 
 # Convenience name for target.
@@ -128,7 +128,7 @@ Astar: Astar/CMakeFiles/Astar.dir/rule
 
 # fast build rule for target.
 Astar/fast:
-	cd /home/dadei/C/product/Learning/build && $(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/build
+	cd /home/dadei/C/Learning/build && $(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/build
 .PHONY : Astar/fast
 
 main.o: main.cpp.o
@@ -136,7 +136,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/dadei/C/product/Learning/build && $(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/main.cpp.o
+	cd /home/dadei/C/Learning/build && $(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -144,7 +144,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/dadei/C/product/Learning/build && $(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/main.cpp.i
+	cd /home/dadei/C/Learning/build && $(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -152,7 +152,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/dadei/C/product/Learning/build && $(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/main.cpp.s
+	cd /home/dadei/C/Learning/build && $(MAKE) $(MAKESILENT) -f Astar/CMakeFiles/Astar.dir/build.make Astar/CMakeFiles/Astar.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -178,7 +178,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/dadei/C/product/Learning/build && $(CMAKE_COMMAND) -P /home/dadei/C/product/Learning/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/dadei/C/product/Learning/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/dadei/C/Learning/build && $(CMAKE_COMMAND) -P /home/dadei/C/Learning/build/CMakeFiles/VerifyGlobs.cmake
+	cd /home/dadei/C/Learning/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
