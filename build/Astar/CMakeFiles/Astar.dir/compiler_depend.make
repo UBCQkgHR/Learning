@@ -103,6 +103,8 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
   /usr/include/c++/13/bits/cxxabi_init_exception.h \
+  /usr/include/c++/13/bits/deque.tcc \
+  /usr/include/c++/13/bits/enable_special_members.h \
   /usr/include/c++/13/bits/erase_if.h \
   /usr/include/c++/13/bits/exception.h \
   /usr/include/c++/13/bits/exception_defines.h \
@@ -110,6 +112,8 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
   /usr/include/c++/13/bits/functexcept.h \
   /usr/include/c++/13/bits/functional_hash.h \
   /usr/include/c++/13/bits/hash_bytes.h \
+  /usr/include/c++/13/bits/hashtable.h \
+  /usr/include/c++/13/bits/hashtable_policy.h \
   /usr/include/c++/13/bits/invoke.h \
   /usr/include/c++/13/bits/ios_base.h \
   /usr/include/c++/13/bits/istream.tcc \
@@ -143,6 +147,7 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
   /usr/include/c++/13/bits/stl_construct.h \
+  /usr/include/c++/13/bits/stl_deque.h \
   /usr/include/c++/13/bits/stl_function.h \
   /usr/include/c++/13/bits/stl_heap.h \
   /usr/include/c++/13/bits/stl_iterator.h \
@@ -151,6 +156,7 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
   /usr/include/c++/13/bits/stl_map.h \
   /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_queue.h \
   /usr/include/c++/13/bits/stl_raw_storage_iter.h \
   /usr/include/c++/13/bits/stl_tempbuf.h \
   /usr/include/c++/13/bits/stl_tree.h \
@@ -163,6 +169,7 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
   /usr/include/c++/13/bits/stringfwd.h \
   /usr/include/c++/13/bits/uniform_int_dist.h \
   /usr/include/c++/13/bits/unique_ptr.h \
+  /usr/include/c++/13/bits/unordered_set.h \
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
@@ -178,6 +185,7 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
   /usr/include/c++/13/cwctype \
   /usr/include/c++/13/debug/assertions.h \
   /usr/include/c++/13/debug/debug.h \
+  /usr/include/c++/13/deque \
   /usr/include/c++/13/exception \
   /usr/include/c++/13/ext/aligned_buffer.h \
   /usr/include/c++/13/ext/alloc_traits.h \
@@ -201,6 +209,7 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
   /usr/include/c++/13/pstl/glue_algorithm_defs.h \
   /usr/include/c++/13/pstl/glue_memory_defs.h \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/queue \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/streambuf \
   /usr/include/c++/13/string \
@@ -209,6 +218,7 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
   /usr/include/c++/13/tuple \
   /usr/include/c++/13/type_traits \
   /usr/include/c++/13/typeinfo \
+  /usr/include/c++/13/unordered_set \
   /usr/include/c++/13/vector \
   /usr/include/ctype.h \
   /usr/include/endian.h \
@@ -365,8 +375,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
@@ -381,19 +389,33 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
-/usr/include/c++/13/bits/ostream.tcc:
+/usr/include/x86_64-linux-gnu/bits/types.h:
 
-/usr/include/c++/13/bits/atomic_base.h:
+/usr/include/x86_64-linux-gnu/bits/time64.h:
 
-/usr/include/c++/13/bits/uses_allocator_args.h:
+/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/x86_64-linux-gnu/bits/timex.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/c++/13/bits/locale_facets_nonio.h:
 
 /usr/include/c++/13/bits/locale_facets.tcc:
 
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/include/c++/13/bits/locale_classes.h:
+
 /usr/include/SFML/Graphics/RenderStates.hpp:
 
 /usr/include/c++/13/bits/invoke.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+/usr/include/c++/13/bits/hashtable.h:
 
 /usr/include/c++/13/bits/functional_hash.h:
 
@@ -402,10 +424,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/SFML/Window/Touch.hpp:
 
 /usr/include/errno.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/c++/13/bits/node_handle.h:
 
 /usr/include/c++/13/bits/functexcept.h:
 
@@ -421,21 +439,27 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/c++/13/bits/stl_multimap.h:
 
+/usr/include/c++/13/bits/stream_iterator.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
+
+/usr/include/c++/13/bits/char_traits.h:
+
 /usr/include/c++/13/bits/exception.h:
 
 /usr/include/c++/13/bits/memory_resource.h:
 
 /usr/include/c++/13/streambuf:
 
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
 /usr/include/c++/13/bits/cxxabi_init_exception.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/SFML/Window/Export.hpp:
 
 /usr/include/c++/13/typeinfo:
 
 /usr/include/c++/13/bits/cpp_type_traits.h:
-
-/usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/c++/13/bits/basic_string.h:
 
@@ -449,8 +473,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/c++/13/bits/basic_ios.h:
 
-/usr/include/x86_64-linux-gnu/bits/time64.h:
-
 /usr/include/c++/13/bits/atomic_lockfree_defines.h:
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
@@ -458,6 +480,10 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/c++/13/bits/concept_check.h:
 
 /usr/include/c++/13/bits/alloc_traits.h:
+
+/usr/include/c++/13/bits/atomic_base.h:
+
+/usr/include/c++/13/bits/uses_allocator_args.h:
 
 /usr/include/c++/13/bits/allocator.h:
 
@@ -468,8 +494,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/c++/13/clocale:
 
 /usr/include/c++/13/bits/align.h:
-
-/usr/include/SFML/System/ThreadLocalPtr.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
@@ -505,10 +529,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/SFML/Graphics/RenderWindow.hpp:
 
-/usr/include/x86_64-linux-gnu/sys/types.h:
-
-/usr/include/SFML/Window/Mouse.hpp:
-
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 
 /usr/include/c++/13/bits/algorithmfwd.h:
@@ -523,6 +543,12 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/c++/13/bits/stl_vector.h:
 
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/SFML/Window/Mouse.hpp:
+
+/usr/include/c++/13/unordered_set:
+
 /usr/include/x86_64-linux-gnu/sys/single_threaded.h:
 
 /usr/include/SFML/Window/Context.hpp:
@@ -534,6 +560,8 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/c++/13/bits/shared_ptr_atomic.h:
 
 /usr/include/c++/13/vector:
+
+/usr/include/c++/13/bits/hashtable_policy.h:
 
 /usr/include/SFML/Graphics/Shape.hpp:
 
@@ -553,6 +581,8 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/SFML/Graphics/Sprite.hpp:
 
+/usr/include/c++/13/bits/enable_special_members.h:
+
 /usr/include/SFML/Graphics/Export.hpp:
 
 /usr/include/c++/13/ext/aligned_buffer.h:
@@ -564,6 +594,10 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/SFML/Config.hpp:
 
 /usr/include/c++/13/ctime:
+
+/usr/include/SFML/System/ThreadLocalPtr.hpp:
+
+/usr/include/c++/13/deque:
 
 /usr/include/c++/13/bits/vector.tcc:
 
@@ -607,6 +641,10 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/SFML/Graphics/Transform.hpp:
 
+/usr/include/c++/13/bits/deque.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
 /usr/include/SFML/Graphics/ConvexShape.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
@@ -630,10 +668,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/SFML/System/MemoryInputStream.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
-
-/usr/include/c++/13/bits/char_traits.h:
 
 /usr/include/SFML/Window/Cursor.hpp:
 
@@ -672,8 +706,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/SFML/Graphics/Transformable.hpp:
 
 /usr/include/SFML/Graphics/View.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
@@ -717,8 +749,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/SFML/Window/Window.hpp:
 
-/usr/include/SFML/Graphics/Shader.hpp:
-
 /usr/include/SFML/System/Time.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
@@ -730,6 +760,12 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/SFML/System/Vector2.hpp:
 
 /usr/include/c++/13/iostream:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/c++/13/bits/node_handle.h:
+
+/usr/include/c++/13/bits/ostream.tcc:
 
 /usr/include/c++/13/bits/postypes.h:
 
@@ -749,10 +785,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/c++/13/bits/shared_ptr.h:
 
-/usr/include/SFML/Window/Export.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
 /usr/include/wchar.h:
 
 /usr/include/c++/13/bits/shared_ptr_base.h:
@@ -765,6 +797,8 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/c++/13/bits/stl_construct.h:
 
+/usr/include/c++/13/bits/stl_deque.h:
+
 /usr/include/c++/13/bits/stl_function.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
@@ -773,11 +807,15 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/c++/13/bits/stl_heap.h:
 
+/usr/include/c++/13/bits/stl_queue.h:
+
+/usr/include/c++/13/bits/requires_hosted.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
 /usr/include/c++/13/bits/stl_raw_storage_iter.h:
 
 /usr/include/c++/13/bits/stl_tempbuf.h:
-
-/usr/include/c++/13/bits/stream_iterator.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
@@ -790,6 +828,8 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/SFML/Graphics/Glsl.inl:
 
 /usr/include/c++/13/bits/uniform_int_dist.h:
+
+/usr/include/c++/13/bits/unordered_set.h:
 
 /usr/include/SFML/Window/Clipboard.hpp:
 
@@ -851,6 +891,14 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/c++/13/pstl/pstl_config.h:
 
+/usr/include/SFML/Graphics/Shader.hpp:
+
+/usr/include/c++/13/queue:
+
+/usr/include/endian.h:
+
+/usr/include/stdint.h:
+
 /usr/include/SFML/System/NonCopyable.hpp:
 
 /usr/include/c++/13/stdexcept:
@@ -865,11 +913,11 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/features-time64.h:
 
-/usr/include/c++/13/bits/nested_exception.h:
-
 /usr/include/SFML/System/Thread.inl:
 
 /usr/include/SFML/System/Vector2.inl:
+
+/usr/include/c++/13/bits/nested_exception.h:
 
 /usr/include/c++/13/tuple:
 
@@ -887,10 +935,6 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/stdc-predef.h:
 
-/usr/include/endian.h:
-
-/usr/include/stdint.h:
-
 /usr/include/c++/13/bits/stl_iterator_base_types.h:
 
 /usr/include/stdio.h:
@@ -901,13 +945,11 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
-/usr/include/x86_64-linux-gnu/bits/endian.h:
-
-/usr/include/c++/13/bits/requires_hosted.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
-
 /usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
 
 /usr/include/time.h:
 
@@ -920,15 +962,3 @@ Astar/CMakeFiles/Astar.dir/main.cpp.o: /home/dadei/C/Learning/Astar/main.cpp \
 /usr/include/SFML/Graphics/RectangleShape.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/x86_64-linux-gnu/bits/select.h:
-
-/usr/include/x86_64-linux-gnu/bits/time.h:
-
-/usr/include/c++/13/bits/locale_classes.h:
-
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/x86_64-linux-gnu/bits/timex.h:

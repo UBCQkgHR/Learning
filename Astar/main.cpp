@@ -8,8 +8,12 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/VideoMode.hpp>
+#include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <memory>
+#include <queue>
+#include <unordered_set>
 #include <vector>
 
 class Level {
@@ -21,18 +25,98 @@ public:
   virtual ~Level();
   virtual void draw(sf::RenderWindow &window);
 };
-Level::~Level() {};
+
+Level::~Level(){};
 void Level::draw(sf::RenderWindow &window) { window.draw(shape); };
 
 class Block : public Level {
 
 public:
-  Block(int i) {
+  Block(int i, int u) {
     shape.setSize(sf::Vector2f(49.f, 49.f));
-    shape.setFillColor(sf::Color::Red);
-    shape.setPosition(sf::Vector2f(i * 50.f, 50.f));
+    shape.setFillColor(sf::Color::Green);
+    shape.setPosition(sf::Vector2f(i * 50.f, u * 50.f));
   };
 };
+class Player : public Level {
+public:
+  Player(int i, int u) {
+    shape.setSize(sf::Vector2f(49.f, 49.f));
+    shape.setFillColor(sf::Color::Blue);
+    shape.setPosition(i * 50.f, u * 50.f);
+  };
+};
+
+struct Vec2 {
+  int x, y;
+  bool operator==(const Vec2 &o) const { return x == o.x && y == o.y; }
+};
+namespace std {
+template <> struct hash<Vec2> {
+  size_t operator()(const Vec2 &v) const {
+    size_t h1 = std::hash<int>()(v.x);
+    size_t h2 = std::hash<int>()(v.y);
+    return h1 ^ (h2 << 1);
+  }
+};
+} // namespace std
+
+float heuristic(const Vec2 &a, const Vec2 &b) {
+  return std::abs(a.x - b.x) + std::abs(a.y - b.y);
+}
+
+struct Node {
+  Vec2 pos;
+  float g, h;
+  Node *parent;
+  float f() const { return g + h; }
+};
+
+struct Compare {
+  bool operator()(Node *a, Node *b) { return a->f() > b->f(); }
+};
+std::vector<Vec2> AStar(const std::vector<std::vector<int>> &grid, Vec2 start,
+                        Vec2 goal) {
+  std::priority_queue<Node *, std::vector<Node *>, Compare> open;
+  std::unordered_set<Vec2> closed;
+  Node *startNode = new Node{start, 0, heuristic(start, goal), nullptr};
+  open.push(startNode);
+  const Vec2 dirs[4] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+  while (!open.empty()) {
+    Node *current = open.top();
+    open.pop();
+    if (current->pos == goal) {
+      std::vector<Vec2> path;
+      while (current) {
+        path.push_back(current->pos);
+        current = current->parent;
+      }
+      std::reverse(path.begin(), path.end());
+      return path;
+    }
+    closed.insert(current->pos);
+
+    for (const Vec2 &d : dirs) {
+      Vec2 neighbor = {current->pos.x + d.x, current->pos.y + d.y};
+
+      if (neighbor.x < 0 || neighbor.y < 0 || neighbor.x >= grid[0].size() ||
+          neighbor.y >= grid.size()) {
+        continue;
+      }
+      if (grid[neighbor.y][neighbor.x] == 1 || closed.count(neighbor)) {
+        continue;
+      }
+
+      float tentative_g = current->g + 1;
+
+      Node *neighborNode =
+          new Node{neighbor, tentative_g, heuristic(neighbor, goal), current};
+      open.push(neighborNode);
+    }
+  }
+  return {};
+}
 
 //////////////////////////////////////////////////////////////////////////
 int main() {
@@ -42,10 +126,20 @@ int main() {
                                         {0, 1, 1, 1, 0},
                                         {0, 0, 0, 0, 0}};
 
+  Vec2 start{0, 0}, goal{0, 3};
+  auto path = AStar(grid, start, goal);
+  std::cout << "path size: " << path.size() << "\n";
   Level level;
+  Player player(0, 0);
   std::vector<std::unique_ptr<Level>> levels;
   for (int i = 0; i < 5; ++i) {
-    levels.push_back(std::make_unique<Block>(i));
+    for (int u = 0; u < 5; ++u) {
+      if (grid[u][i] == 1) {
+        levels.push_back(std::make_unique<Block>(i, u));
+      } else {
+        continue;
+      }
+    }
   }
 
   sf::RenderWindow window(sf::VideoMode(800, 600), "Astar");
@@ -53,6 +147,13 @@ int main() {
   sf::RectangleShape rect;
   rect.setSize(sf::Vector2f(50, 50));
   rect.setFillColor(sf::Color::Red);
+  std::cout << "("
+               ","
+               ")";
+  for (auto &p : path) {
+    std::cout << "(" << p.x << "," << p.y << ")" << std::endl;
+    ;
+  };
   while (window.isOpen()) {
     sf::Event event;
     while (window.pollEvent(event)) {
@@ -62,7 +163,7 @@ int main() {
     for (auto &e : levels) {
       e->draw(window);
     }
-    // window.draw(rect);
+    player.draw(window);
 
     window.display();
   };
