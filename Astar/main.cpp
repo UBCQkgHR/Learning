@@ -19,179 +19,229 @@
 #include <vector>
 
 class Level {
-   public:
-    sf::RectangleShape shape;
-    //  Level();
-    // virtual void update() {};
-    virtual ~Level();
-    virtual void draw(sf::RenderWindow &window);
+public:
+  sf::RectangleShape shape;
+  Level() {
+    shape.setSize(sf::Vector2f(39.f, 29.f));
+  } // virtual void update() {};
+  virtual ~Level();
+  virtual void draw(sf::RenderWindow &window);
 };
 
-Level::~Level(){};
+Level::~Level() {};
 void Level::draw(sf::RenderWindow &window) { window.draw(shape); };
 
 class Block : public Level {
-   public:
-    Block(int i, int u) {
-        shape.setSize(sf::Vector2f(49.f, 49.f));
-        shape.setFillColor(sf::Color::Green);
-        shape.setPosition(sf::Vector2f(i * 50.f, u * 50.f));
-    };
+public:
+  Block(int i, int u) {
+    shape.setSize(sf::Vector2f(39.f, 29.f));
+    shape.setFillColor(sf::Color::Green);
+    shape.setPosition(sf::Vector2f(i * 40.f, u * 30.f));
+  };
 };
 class Player : public Level {
-   public:
-    Player(int i, int u) {
-        shape.setSize(sf::Vector2f(49.f, 49.f));
-        shape.setFillColor(sf::Color::Blue);
-        shape.setPosition(i * 50.f, u * 50.f);
-    };
+public:
+  Player(int i, int u) {
+    shape.setSize(sf::Vector2f(39.f, 29.f));
+    shape.setFillColor(sf::Color::Blue);
+    shape.setPosition(i * 39.f, u * 29.f);
+  };
 };
 
 struct Vec2 {
-    int x, y;
-    bool operator==(const Vec2 &o) const { return x == o.x && y == o.y; }
+  int x, y;
+  bool operator==(const Vec2 &o) const { return x == o.x && y == o.y; }
 };
 namespace std {
-template <>
-struct hash<Vec2> {
-    size_t operator()(const Vec2 &v) const {
-        size_t h1 = std::hash<int>()(v.x);
-        size_t h2 = std::hash<int>()(v.y);
-        return h1 ^ (h2 << 1);
-    }
+template <> struct hash<Vec2> {
+  size_t operator()(const Vec2 &v) const {
+    size_t h1 = std::hash<int>()(v.x);
+    size_t h2 = std::hash<int>()(v.y);
+    return h1 ^ (h2 << 1);
+  }
 };
-}  // namespace std
+} // namespace std
 
 float heuristic(const Vec2 &a, const Vec2 &b) {
-    return std::abs(a.x - b.x) + std::abs(a.y - b.y);
+  return std::abs(a.x - b.x) + std::abs(a.y - b.y);
 }
 
 struct Node {
-    Vec2 pos;
-    float g, h;
-    Node *parent;
-    float f() const { return g + h; }
+  Vec2 pos;
+  float g, h;
+  Node *parent;
+  float f() const { return g + h; }
 };
 
 struct Compare {
-    bool operator()(Node *a, Node *b) { return a->f() > b->f(); }
+  bool operator()(Node *a, Node *b) { return a->f() > b->f(); }
 };
 std::vector<Vec2> AStar(const std::vector<std::vector<int>> &grid, Vec2 start,
                         Vec2 goal) {
-    std::priority_queue<Node *, std::vector<Node *>, Compare> open;
-    std::unordered_set<Vec2> closed;
-    Node *startNode = new Node{start, 0, heuristic(start, goal), nullptr};
-    open.push(startNode);
-    const Vec2 dirs[4] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+  std::priority_queue<Node *, std::vector<Node *>, Compare> open;
+  std::unordered_set<Vec2> closed;
+  Node *startNode = new Node{start, 0, heuristic(start, goal), nullptr};
+  open.push(startNode);
+  const Vec2 dirs[4] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
-    while (!open.empty()) {
-        Node *current = open.top();
-        open.pop();
-        if (current->pos == goal) {
-            std::vector<Vec2> path;
-            while (current) {
-                path.push_back(current->pos);
-                current = current->parent;
-            }
-            std::reverse(path.begin(), path.end());
-            return path;
-        }
-        closed.insert(current->pos);
-
-        for (const Vec2 &d : dirs) {
-            Vec2 neighbor = {current->pos.x + d.x, current->pos.y + d.y};
-
-            if (neighbor.x < 0 || neighbor.y < 0 ||
-                neighbor.x >= grid[0].size() || neighbor.y >= grid.size()) {
-                continue;
-            }
-            if (grid[neighbor.y][neighbor.x] == 1 || closed.count(neighbor)) {
-                continue;
-            }
-
-            float tentative_g = current->g + 1;
-
-            Node *neighborNode = new Node{neighbor, tentative_g,
-                                          heuristic(neighbor, goal), current};
-            open.push(neighborNode);
-        }
+  while (!open.empty()) {
+    Node *current = open.top();
+    open.pop();
+    if (current->pos == goal) {
+      std::vector<Vec2> path;
+      while (current) {
+        path.push_back(current->pos);
+        current = current->parent;
+      }
+      std::reverse(path.begin(), path.end());
+      return path;
     }
-    return {};
+    closed.insert(current->pos);
+
+    for (const Vec2 &d : dirs) {
+      Vec2 neighbor = {current->pos.x + d.x, current->pos.y + d.y};
+
+      if (neighbor.x < 0 || neighbor.y < 0 || neighbor.x >= grid[0].size() ||
+          neighbor.y >= grid.size()) {
+        continue;
+      }
+      if (grid[neighbor.y][neighbor.x] == 1 || closed.count(neighbor)) {
+        continue;
+      }
+
+      float tentative_g = current->g + 1;
+
+      Node *neighborNode =
+          new Node{neighbor, tentative_g, heuristic(neighbor, goal), current};
+      open.push(neighborNode);
+    }
+  }
+  return {};
 }
 
 //////////////////////////////////////////////////////////////////////////
 int main() {
-    std::vector<std::vector<int>> grid = {{0, 0, 0, 0, 0},
-                                          {1, 1, 0, 1, 0},
-                                          {0, 0, 0, 1, 0},
-                                          {0, 1, 1, 1, 0},
-                                          {0, 0, 0, 0, 0}};
+  std::vector<std::vector<int>> grid = {
+      {0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+      {0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1},
+      {1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1},
+      {0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0},
+      {0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0},
+      {0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+      {0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0},
+      {0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0},
+      {0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+      {0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1},
+      {0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1},
+      {1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1},
+      {0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1},
+      {1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0},
+      {1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0},
+      {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0},
+      {0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0},
+      {0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0},
+      {1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0}};
 
-    Vec2 start{0, 0}, goal{0, 3};
-    auto path = AStar(grid, start, goal);
-    std::cout << "path size: " << path.size() << "\n";
-    Level level;
-    Player player(0, 0);
-    std::vector<std::unique_ptr<Level>> levels;
-    for (int i = 0; i < 5; ++i) {
-        for (int u = 0; u < 5; ++u) {
-            if (grid[u][i] == 1) {
-                levels.push_back(std::make_unique<Block>(i, u));
-            } else {
-                continue;
-            }
+  Vec2 start{0, 0}, goal{19, 19};
+  auto path = AStar(grid, start, goal);
+  std::cout << "path size: " << path.size() << "\n";
+  Level level;
+  Player player(0, 0);
+  std::vector<std::unique_ptr<Level>> levels;
+  for (int i = 0; i < 20; ++i) {
+    for (int u = 0; u < 20; ++u) {
+      if (grid[u][i] == 1) {
+        levels.push_back(std::make_unique<Block>(i, u));
+      } else {
+        continue;
+      }
+    }
+  }
+
+  sf::RenderWindow window(sf::VideoMode(800, 600), "Astar");
+  window.setFramerateLimit(10);
+  sf::RectangleShape rect;
+
+  sf::Vector2i mousePos;
+  sf::Vector2f worldPos;
+  rect.setSize(sf::Vector2f(40, 30));
+  rect.setFillColor(sf::Color::Red);
+  std::cout << "("
+               ","
+               ")";
+  for (auto &p : path) {
+    std::cout << "(" << p.x << "," << p.y << ")" << std::endl;
+    ;
+  };
+  sf::Clock *clock = new sf::Clock;
+  float dt;
+  const sf::Time moveDelay = sf::microseconds(900);
+  int x, y;
+  int mouseX, mouseY;
+  while (window.isOpen()) {
+    sf::Event event;
+    dt = clock->restart().asMilliseconds();
+    while (window.pollEvent(event)) {
+      if (event.type == sf::Event::Closed) {
+
+        window.close();
+      }
+      if (event.type == sf::Event::MouseButtonPressed) {
+        if (event.mouseButton.button == sf::Mouse::Left) {
+          mouseX = event.mouseButton.x / 40;
+          mouseY = event.mouseButton.y / 30;
+          grid[mouseY][mouseX] = 1;
+          levels.push_back(std::make_unique<Block>(mouseX, mouseY));
+
+          path = AStar(grid, start, goal);
+          std::cout << " Left press" << event.mouseButton.x << ", "
+                    << event.mouseButton.y << std::endl;
         }
+        if (event.mouseButton.button == sf::Mouse::Right) {
+          mouseX = event.mouseButton.x / 40;
+          mouseY = event.mouseButton.y / 30;
+          mousePos = sf::Mouse::getPosition(window);
+          worldPos = window.mapPixelToCoords(mousePos);
+          grid[mouseY][mouseX] = 0;
+          for (auto it = levels.begin(); it != levels.end(); ++it) {
+            if ((*it)->shape.getGlobalBounds().contains(worldPos)) {
+              levels.erase(it);
+              break;
+            }
+          }
+
+          path = AStar(grid, start, goal);
+          std::cout << "MouseX= " << mouseX << "MouseY= " << mouseY
+                    << std::endl;
+        }
+      }
     }
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Astar");
-    window.setFramerateLimit(10);
-    sf::RectangleShape rect;
-    rect.setSize(sf::Vector2f(50, 50));
-    rect.setFillColor(sf::Color::Red);
-    std::cout << "("
-                 ","
-                 ")";
-    for (auto &p : path) {
-        std::cout << "(" << p.x << "," << p.y << ")" << std::endl;
-        ;
-    };
-    sf::Clock *clock = new sf::Clock;
-    float dt;
-    const sf::Time moveDelay = sf::microseconds(900);
-    int x, y;
-
-    while (window.isOpen()) {
-        sf::Event event;
-        dt = clock->restart().asMilliseconds();
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
-        window.clear();
-        for (auto &e : levels) {
-            e->draw(window);
-        }
-        //  if (clock->getElapsedTime() >= moveDelay) {
-        static int step = 1;
-        std::cout << "dt = " << dt << "--" << "step = " << "--" << std::endl;
-        x = path[step].x;
-        y = path[step].y;
-        player.shape.setPosition(x * 50.f, y * 50.f);
-        player.draw(window);
-        sf::Vector2f posit = player.shape.getPosition();
-        std::cout << "x=" << posit.x << "y=" << posit.y << std::endl;
-        if (step >= path.size()) {
-            step = 0;
-        }
-        if (step < path.size()) {
-            ++step;
-        }
-
-        window.display();
-        //}
-        clock->restart();
-        //}
+    window.clear();
+    for (auto &e : levels) {
+      e->draw(window);
     }
-    return 0;
+    //  if (clock->getElapsedTime() >= moveDelay) {
+    static int step = 1;
+    std::cout << "dt = " << dt << "--" << "step = " << "--" << std::endl;
+    x = path[step].x;
+    y = path[step].y;
+    player.shape.setPosition(x * 40.f, y * 30.f);
+    player.draw(window);
+    sf::Vector2f posit = player.shape.getPosition();
+    std::cout << "x=" << posit.x << "y=" << posit.y << std::endl;
+    if (step >= path.size()) {
+      step = 0;
+    }
+    if (step < path.size()) {
+      ++step;
+    }
+
+    window.display();
+    //}
+    clock->restart();
+    //}
+  }
+  return 0;
 }
