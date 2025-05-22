@@ -1,0 +1,25 @@
+# Каталог сборки
+build/
+
+# Объектные файлы
+*.o
+*.obj
+
+# Исполняемые файлы
+*.exe
+*.out
+*.a
+*.so
+
+# Файлы редакторов и IDE
+*.swp
+*.swo
+*.log
+.vscode/
+.idea/
+
+# Файлы CMake
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake

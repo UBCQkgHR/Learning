@@ -1,5 +1,0 @@
-/home/dadei/C/Learning/build/CMakeFiles/edit_cache.dir
-/home/dadei/C/Learning/build/CMakeFiles/rebuild_cache.dir
-/home/dadei/C/Learning/build/Astar/CMakeFiles/Astar.dir
-/home/dadei/C/Learning/build/Astar/CMakeFiles/edit_cache.dir
-/home/dadei/C/Learning/build/Astar/CMakeFiles/rebuild_cache.dir
