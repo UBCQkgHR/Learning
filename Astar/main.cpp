@@ -182,6 +182,7 @@ int main() {
   while (window.isOpen()) {
     sf::Event event;
     dt = clock->restart().asMilliseconds();
+    static int step = 0;
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed) {
 
@@ -191,10 +192,18 @@ int main() {
         if (event.mouseButton.button == sf::Mouse::Left) {
           mouseX = event.mouseButton.x / 40;
           mouseY = event.mouseButton.y / 30;
-          grid[mouseY][mouseX] = 1;
-          levels.push_back(std::make_unique<Block>(mouseX, mouseY));
+          if (grid[mouseY][mouseX] != 1) {
 
-          path = AStar(grid, start, goal);
+            grid[mouseY][mouseX] = 1;
+
+            levels.push_back(std::make_unique<Block>(mouseX, mouseY));
+
+            start = {(static_cast<int>(player.shape.getPosition().x)) / 40,
+                     (static_cast<int>(player.shape.getPosition().y)) / 30};
+
+            path = AStar(grid, start, goal);
+            step = 0;
+          }
           std::cout << " Left press" << event.mouseButton.x << ", "
                     << event.mouseButton.y << std::endl;
         }
@@ -211,7 +220,11 @@ int main() {
             }
           }
 
+          start = {(static_cast<int>(player.shape.getPosition().x)) / 40,
+                   (static_cast<int>(player.shape.getPosition().y)) / 30};
+
           path = AStar(grid, start, goal);
+          step = 0;
           std::cout << "MouseX= " << mouseX << "MouseY= " << mouseY
                     << std::endl;
         }
@@ -223,21 +236,26 @@ int main() {
       e->draw(window);
     }
     //  if (clock->getElapsedTime() >= moveDelay) {
-    static int step = 1;
-    std::cout << "dt = " << dt << "--" << "step = " << "--" << std::endl;
-    x = path[step].x;
-    y = path[step].y;
-    player.shape.setPosition(x * 40.f, y * 30.f);
-    player.draw(window);
+    std::cout << "dt = " << dt << "--" << "step = " << step << "--"
+              << std::endl;
+    if (!path.empty()) {
+      x = path[step].x;
+      y = path[step].y;
+    }
+
     sf::Vector2f posit = player.shape.getPosition();
     std::cout << "x=" << posit.x << "y=" << posit.y << std::endl;
-    if (step >= path.size()) {
-      step = 0;
-    }
     if (step < path.size()) {
       ++step;
     }
 
+    if (step >= path.size()) {
+      step = 0;
+      start = {0, 0};
+      path = AStar(grid, start, goal);
+    }
+    player.shape.setPosition(x * 40.f, y * 30.f);
+    player.draw(window);
     window.display();
     //}
     clock->restart();
