@@ -31,6 +31,16 @@ public:
 Level::~Level() {};
 void Level::draw(sf::RenderWindow &window) { window.draw(shape); };
 
+class Goal : public Level {
+public:
+  Goal(int i, int u) {
+    shape.setSize(sf::Vector2f(39.f, 29.f));
+    shape.setPosition(i * 40, u * 30);
+    shape.setFillColor(sf::Color::Yellow);
+  }
+  ~Goal() {};
+};
+
 class Block : public Level {
 public:
   Block(int i, int u) {
@@ -39,6 +49,7 @@ public:
     shape.setPosition(sf::Vector2f(i * 40.f, u * 30.f));
   };
 };
+
 class Player : public Level {
 public:
   Player(int i, int u) {
@@ -147,6 +158,7 @@ int main() {
   auto path = AStar(grid, start, goal);
   std::cout << "path size: " << path.size() << "\n";
   Level level;
+  Goal goalplayer(19, 19);
   Player player(0, 0);
   std::vector<std::unique_ptr<Level>> levels;
   for (int i = 0; i < 20; ++i) {
@@ -189,10 +201,26 @@ int main() {
         window.close();
       }
       if (event.type == sf::Event::MouseButtonPressed) {
+        if (event.mouseButton.button == sf::Mouse::Middle) {
+          mouseX = event.mouseButton.x / 40;
+          mouseY = event.mouseButton.y / 30;
+
+          if (grid[mouseY][mouseX] != 1) {
+
+            goal = {mouseX, mouseY};
+            goalplayer.shape.setPosition(mouseX * 40, mouseY * 30);
+            start = {(static_cast<int>(player.shape.getPosition().x)) / 40,
+                     (static_cast<int>(player.shape.getPosition().y)) / 30};
+
+            path = AStar(grid, start, goal);
+            step = 0;
+          };
+        }
         if (event.mouseButton.button == sf::Mouse::Left) {
           mouseX = event.mouseButton.x / 40;
           mouseY = event.mouseButton.y / 30;
-          if (grid[mouseY][mouseX] != 1) {
+
+          if (grid[mouseY][mouseX] == 0) {
 
             grid[mouseY][mouseX] = 1;
 
@@ -210,23 +238,26 @@ int main() {
         if (event.mouseButton.button == sf::Mouse::Right) {
           mouseX = event.mouseButton.x / 40;
           mouseY = event.mouseButton.y / 30;
+
           mousePos = sf::Mouse::getPosition(window);
           worldPos = window.mapPixelToCoords(mousePos);
-          grid[mouseY][mouseX] = 0;
-          for (auto it = levels.begin(); it != levels.end(); ++it) {
-            if ((*it)->shape.getGlobalBounds().contains(worldPos)) {
-              levels.erase(it);
-              break;
+          if (grid[mouseY][mouseX] == 1) {
+            grid[mouseY][mouseX] = 0;
+            for (auto it = levels.begin(); it != levels.end(); ++it) {
+              if ((*it)->shape.getGlobalBounds().contains(worldPos)) {
+                levels.erase(it);
+                break;
+              }
             }
+
+            start = {(static_cast<int>(player.shape.getPosition().x)) / 40,
+                     (static_cast<int>(player.shape.getPosition().y)) / 30};
+
+            path = AStar(grid, start, goal);
+            step = 0;
+            std::cout << "MouseX= " << mouseX << "MouseY= " << mouseY
+                      << std::endl;
           }
-
-          start = {(static_cast<int>(player.shape.getPosition().x)) / 40,
-                   (static_cast<int>(player.shape.getPosition().y)) / 30};
-
-          path = AStar(grid, start, goal);
-          step = 0;
-          std::cout << "MouseX= " << mouseX << "MouseY= " << mouseY
-                    << std::endl;
         }
       }
     }
@@ -257,7 +288,7 @@ int main() {
     player.shape.setPosition(x * 40.f, y * 30.f);
     player.draw(window);
     window.display();
-    //}
+    goalplayer.draw(window);
     clock->restart();
     //}
   }
