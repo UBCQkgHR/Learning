@@ -31,6 +31,16 @@ public:
 Level::~Level() {};
 void Level::draw(sf::RenderWindow &window) { window.draw(shape); };
 
+class Dot : public Level {
+public:
+  Dot(int i, int u) {
+    shape.setSize(sf::Vector2f(10.f, 10.f));
+    shape.setFillColor(sf::Color::Blue);
+    shape.setPosition((i * 40) + 20, (u * 30) + 15);
+    shape.setOrigin(shape.getGlobalBounds().width / 2.f,
+                    shape.getLocalBounds().height / 2.f);
+  }
+};
 class Goal : public Level {
 public:
   Goal(int i, int u) {
@@ -156,10 +166,16 @@ int main() {
 
   Vec2 start{0, 0}, goal{19, 19};
   auto path = AStar(grid, start, goal);
+
   std::cout << "path size: " << path.size() << "\n";
   Level level;
   Goal goalplayer(19, 19);
   Player player(0, 0);
+  Dot dot(0, 0);
+  std::vector<std::unique_ptr<Dot>> Dots;
+  for (auto &i : path) {
+    Dots.push_back(std::make_unique<Dot>(i.x, i.y));
+  };
   std::vector<std::unique_ptr<Level>> levels;
   for (int i = 0; i < 20; ++i) {
     for (int u = 0; u < 20; ++u) {
@@ -214,6 +230,10 @@ int main() {
 
             path = AStar(grid, start, goal);
             step = 0;
+            Dots.clear();
+            for (auto &p : path) {
+              Dots.push_back(std::make_unique<Dot>(p.x, p.y));
+            };
           };
         }
         if (event.mouseButton.button == sf::Mouse::Left) {
@@ -266,6 +286,9 @@ int main() {
     for (auto &e : levels) {
       e->draw(window);
     }
+    for (auto &d : Dots) {
+      d->draw(window);
+    }
     //  if (clock->getElapsedTime() >= moveDelay) {
     std::cout << "dt = " << dt << "--" << "step = " << step << "--"
               << std::endl;
@@ -287,8 +310,8 @@ int main() {
     }
     player.shape.setPosition(x * 40.f, y * 30.f);
     player.draw(window);
-    window.display();
     goalplayer.draw(window);
+    window.display();
     clock->restart();
     //}
   }
